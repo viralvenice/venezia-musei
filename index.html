@@ -47,23 +47,23 @@
         @keyframes pulse { 0%, 100% { transform: translateX(-50%) scale(1); } 50% { transform: translateX(-50%) scale(1.05); } }
         .mapboxgl-popup-content { padding: 0; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); max-width: 450px; overflow: hidden; }
         .popup-header { padding: 20px; background: linear-gradient(135deg, #81C9DF 0%, #6ab5cc 100%); color: white; position: relative; }
-        .popup-title { font-size: 22px; font-weight: 600; margin-bottom: 5px; padding-right: 80px; }
+        .popup-title { font-size: 22px; font-weight: 600; margin-bottom: 5px; padding-right: 80px; word-wrap: break-word; }
         .popup-duration { font-size: 14px; opacity: 0.9; }
         .popup-actions { position: absolute; top: 15px; right: 15px; display: flex; gap: 8px; }
         .popup-action-btn { background: rgba(255,255,255,0.2); border: none; color: white; width: 32px; height: 32px; border-radius: 8px; cursor: pointer; font-size: 16px; transition: all 0.3s; }
         .popup-action-btn:hover { background: rgba(255,255,255,0.4); transform: scale(1.1); }
-        .popup-body { padding: 20px; max-height: 450px; overflow-y: auto; }
+        .popup-body { padding: 20px; max-height: 450px; overflow-y: auto; word-wrap: break-word; overflow-wrap: break-word; }
         .popup-body::-webkit-scrollbar { width: 6px; }
         .popup-body::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
         .popup-body::-webkit-scrollbar-thumb { background: #81C9DF; border-radius: 10px; }
-        .popup-main-description { color: #333; line-height: 1.6; margin-bottom: 20px; }
+        .popup-main-description { color: #333; line-height: 1.6; margin-bottom: 20px; word-wrap: break-word; overflow-wrap: break-word; white-space: pre-wrap; }
         .carousel-container { position: relative; margin-top: 20px; }
         .carousel-section { display: none; animation: fadeIn 0.3s; }
         .carousel-section.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
         .section-header { padding: 15px; background: #f8f4f0; border-radius: 12px; margin-bottom: 15px; }
-        .section-title { font-size: 18px; font-weight: 600; color: #333; margin-bottom: 10px; }
-        .section-description { color: #666; line-height: 1.6; font-size: 14px; }
+        .section-title { font-size: 18px; font-weight: 600; color: #333; margin-bottom: 10px; word-wrap: break-word; }
+        .section-description { color: #666; line-height: 1.6; font-size: 14px; word-wrap: break-word; overflow-wrap: break-word; white-space: pre-wrap; }
         .carousel-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 15px; }
         .carousel-btn { background: #81C9DF; color: white; border: none; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 18px; transition: all 0.3s; }
         .carousel-btn:hover:not(:disabled) { background: #6ab5cc; transform: scale(1.1); }
@@ -71,9 +71,12 @@
         .carousel-dots { display: flex; gap: 8px; }
         .dot { width: 8px; height: 8px; border-radius: 50%; background: #ddd; transition: all 0.3s; cursor: pointer; }
         .dot.active { background: #81C9DF; width: 24px; border-radius: 4px; }
-        .how-to-arrive { margin-top: 20px; padding: 15px; background: #f0f8fa; border-radius: 12px; border-left: 4px solid #81C9DF; }
-        .how-to-arrive h4 { color: #81C9DF; margin-bottom: 10px; font-size: 16px; }
-        .how-to-arrive p { color: #666; line-height: 1.6; font-size: 14px; }
+        .info-box { margin-top: 20px; padding: 15px; border-radius: 12px; border-left: 4px solid #81C9DF; }
+        .how-to-arrive { background: #f0f8fa; }
+        .tickets-hours { background: #fff4e6; border-left-color: #ffa726; }
+        .info-box h4 { color: #81C9DF; margin-bottom: 10px; font-size: 16px; }
+        .tickets-hours h4 { color: #ffa726; }
+        .info-box p { color: #666; line-height: 1.6; font-size: 14px; word-wrap: break-word; overflow-wrap: break-word; white-space: pre-wrap; }
         .edit-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 10001; overflow-y: auto; }
         .edit-modal.active { display: flex; align-items: flex-start; justify-content: center; padding: 50px 20px; }
         .edit-modal-content { background: white; border-radius: 16px; padding: 30px; max-width: 700px; width: 100%; box-shadow: 0 20px 60px rgba(0,0,0,0.3); max-height: 90vh; overflow-y: auto; }
@@ -177,6 +180,8 @@
                     <div class="form-group"><label>Descrizione (Inglese) *</label><textarea id="edit-desc-en" required></textarea></div>
                     <div class="form-group"><label>Come Arrivare (Italiano)</label><textarea id="edit-arrive-it"></textarea></div>
                     <div class="form-group"><label>Come Arrivare (Inglese)</label><textarea id="edit-arrive-en"></textarea></div>
+                    <div class="form-group"><label>Orari e Biglietti (Italiano)</label><textarea id="edit-tickets-it" placeholder="Lascia vuoto se non applicabile"></textarea></div>
+                    <div class="form-group"><label>Orari e Biglietti (Inglese)</label><textarea id="edit-tickets-en" placeholder="Leave empty if not applicable"></textarea></div>
                     <div class="subsections-header"><h3>Sottosezioni</h3><button type="button" class="btn-add-subsection" onclick="addSubsection()">➕ Aggiungi</button></div>
                     <div id="subsections-container"></div>
                     <div class="modal-actions">
@@ -191,7 +196,7 @@
     <script>
         mapboxgl.accessToken = 'pk.eyJ1IjoiYWxleGVhbmdlbGEiLCJhIjoiY21nNnltb3lqMG00NjJtc2U1MGwzeGhkYiJ9.-b-5VYMsx38e2YB6JB4qEw';
         const PASSWORD = 'venezia2025';
-        const PLACE_EMOJI = '🏛️'; // Emoji per questo tipo di luogo
+        const PLACE_EMOJI = '🏛️';
         let currentLanguage = 'it', map, markers = [], currentPopup = null, addMode = false, editingMuseumId = null, subsectionCounter = 0;
         
         const defaultMuseums = [{
@@ -201,7 +206,8 @@
             coordinates:[12.3407,45.4332],
             description:{it:"Il Palazzo Ducale è stato per secoli il centro del potere politico veneziano.",en:"The Doge's Palace was for centuries the center of Venetian political power."},
             subsections:[{title:{it:"Architettura",en:"Architecture"},description:{it:"L'attuale edificio risale al XIV-XV secolo.",en:"The current building dates from the 14th-15th century."}}],
-            howToArrive:{it:"Vaporetto: linee 1, 2 fermata San Marco.",en:"Vaporetto: lines 1, 2 stop San Marco."}
+            howToArrive:{it:"Vaporetto: linee 1, 2 fermata San Marco.",en:"Vaporetto: lines 1, 2 stop San Marco."},
+            ticketsHours:{it:"Aperto tutti i giorni 9:00-19:00. Biglietto intero €25.",en:"Open daily 9:00-19:00. Full ticket €25."}
         }];
         
         let museums = JSON.parse(localStorage.getItem('venezia-musei-data')) || defaultMuseums;
@@ -288,7 +294,10 @@
                 el.style.fontSize = '28px';
                 el.style.cursor = 'pointer';
                 const marker = new mapboxgl.Marker(el).setLngLat(m.coordinates).addTo(map);
-                el.addEventListener('click', () => showPopup(m));
+                el.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    showPopup(m);
+                });
                 markers.push(marker);
             });
         }
@@ -312,7 +321,8 @@
                             ${sub.map((s,i) => `<div class="carousel-section ${i===0?'active':''}" data-index="${i}"><div class="section-header" style="background:${getColorForSection(i)};"><div class="section-title">${s.title[currentLanguage]}</div><div class="section-description">${s.description[currentLanguage]}</div></div></div>`).join('')}
                             ${sub.length>1 ? `<div class="carousel-nav"><button class="carousel-btn" onclick="changeSlide(${m.id},-1)">←</button><div class="carousel-dots">${sub.map((_,i) => `<div class="dot ${i===0?'active':''}" data-index="${i}"></div>`).join('')}</div><button class="carousel-btn" onclick="changeSlide(${m.id},1)">→</button></div>` : ''}
                         </div>` : ''}
-                    ${m.howToArrive ? `<div class="how-to-arrive"><h4>🚢 ${currentLanguage==='it'?'Come Arrivare':'How to Get There'}</h4><p>${m.howToArrive[currentLanguage]}</p></div>` : ''}
+                    ${m.howToArrive && (m.howToArrive[currentLanguage] && m.howToArrive[currentLanguage].trim()) ? `<div class="info-box how-to-arrive"><h4>🚢 ${currentLanguage==='it'?'Come Arrivare':'How to Get There'}</h4><p>${m.howToArrive[currentLanguage]}</p></div>` : ''}
+                    ${m.ticketsHours && (m.ticketsHours[currentLanguage] && m.ticketsHours[currentLanguage].trim()) ? `<div class="info-box tickets-hours"><h4>🎫 ${currentLanguage==='it'?'Orari e Biglietti':'Hours and Tickets'}</h4><p>${m.ticketsHours[currentLanguage]}</p></div>` : ''}
                 </div>`;
             currentPopup = new mapboxgl.Popup({maxWidth:'450px',offset:25}).setLngLat(m.coordinates).setHTML(popupContent).addTo(map);
         }
@@ -351,7 +361,7 @@
 
         function openEditModalForNew(ll) {
             editingMuseumId = null;
-            const m = {name:{it:'',en:''},duration:60,coordinates:[ll.lng,ll.lat],description:{it:'',en:''},subsections:[],howToArrive:{it:'',en:''}};
+            const m = {name:{it:'',en:''},duration:60,coordinates:[ll.lng,ll.lat],description:{it:'',en:''},subsections:[],howToArrive:{it:'',en:''},ticketsHours:{it:'',en:''}};
             openEditModal(m);
         }
 
@@ -366,6 +376,8 @@
             document.getElementById('edit-desc-en').value = m.description.en;
             document.getElementById('edit-arrive-it').value = m.howToArrive?.it || '';
             document.getElementById('edit-arrive-en').value = m.howToArrive?.en || '';
+            document.getElementById('edit-tickets-it').value = m.ticketsHours?.it || '';
+            document.getElementById('edit-tickets-en').value = m.ticketsHours?.en || '';
             const container = document.getElementById('subsections-container');
             container.innerHTML = '';
             subsectionCounter = 0;
@@ -417,7 +429,8 @@
                 coordinates: [parseFloat(document.getElementById('edit-lng').value), parseFloat(document.getElementById('edit-lat').value)],
                 description: {it:document.getElementById('edit-desc-it').value, en:document.getElementById('edit-desc-en').value},
                 subsections: subsections,
-                howToArrive: {it:document.getElementById('edit-arrive-it').value, en:document.getElementById('edit-arrive-en').value}
+                howToArrive: {it:document.getElementById('edit-arrive-it').value, en:document.getElementById('edit-arrive-en').value},
+                ticketsHours: {it:document.getElementById('edit-tickets-it').value, en:document.getElementById('edit-tickets-en').value}
             };
             if (editingMuseumId) {
                 const index = museums.findIndex(m => m.id === editingMuseumId);
